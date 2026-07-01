@@ -115,3 +115,7 @@ The project environment was subjected to a maximum-load stress test to verify co
 | **Media Stream Quality** | Packet Drops / Audio Stuttering | **Flawless Real-Time Sync** |
 
 By preventing the Intel processor from entering high-voltage bursts and removing chassis heat early, processing priority goes entirely to the application layer instead of being hijacked by macOS safety mechanisms.
+
+
+#### 📈 Real-Time Diagnostic Capture
+![System Metrics Stress Test](system-metrics.png)
