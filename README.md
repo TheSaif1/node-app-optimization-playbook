@@ -84,3 +84,34 @@ Elevate the priority allocation level of your active workspace directly in the o
 3. Open the native macOS Terminal application and execute this command (replace [YOUR_PID] with your copied digits):
    ```bash
    sudo renice -20 -p [YOUR_PID]
+
+
+
+
+
+## 🌡️ Thermal & Performance Optimization
+
+When running intensive multi-profile workflows combined with real-time node engines and screen sharing, Intel-based Mac architectures can experience extreme thermal throttling, triggering a 999% `kernel_task` lockup. 
+
+To maintain absolute system stability during live interactive sessions, a dual-layer hardware optimization stack is utilized:
+
+### 🛠️ Recommended Optimization Stack
+* **Processor Modification:** [Turbo Boost Switcher for OS X](https://www.rugarciap.com/turbo-boost-switcher-for-os-x-blog/) (Keep Turbo Boost permanently **disabled** to cap voltage and heat spikes at the microchip level).
+* **Active Thermal Management:** [Macs Fan Control](https://crystalidea.com/macs-fan-control) (Override default reactive system fan curves; initialize a manual high-speed or custom sensor-based curve prior to launching heavy pipelines).
+
+### 📊 Benchmark Case Study: The Studio Stress Test
+The project environment was subjected to a maximum-load stress test to verify continuous production stability:
+
+* **Baseline Workload:** 2 separate Google Chrome user profiles active simultaneously, maintaining 40 open browser tabs with active background scripts.
+* **Real-Time Processing:** Intensive node-based composition and canvas rendering inside the Fuser creative engine.
+* **Live Stream Pipeline:** Live desktop Zoom meeting with active real-time webcam encoding and continuous Zoom screen-sharing of the moving Fuser compositor canvas.
+
+#### Diagnostic Verification (via Activity Monitor)
+| Metric | Baseline (Stock macOS) | Optimized Status (Stable Cruise) |
+| :--- | :--- | :--- |
+| **CPU Core Temperature** | Thermal Panic Threshold (95°C+) | **Stable 71°C** |
+| **`kernel_task` CPU Load** | 999% (System Intercept / Lockup) | **6.2% (Normal Operating Baseline)** |
+| **Fan Profile** | Delayed / Delayed Reactive | **Proactive Fixed Speed (3,100 - 3,300 RPM)** |
+| **Media Stream Quality** | Packet Drops / Audio Stuttering | **Flawless Real-Time Sync** |
+
+By preventing the Intel processor from entering high-voltage bursts and removing chassis heat early, processing priority goes entirely to the application layer instead of being hijacked by macOS safety mechanisms.
