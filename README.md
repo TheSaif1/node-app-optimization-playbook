@@ -11,7 +11,7 @@ A comprehensive systems-engineering handbook to eliminating UI lag, audio buffer
 | **macOS (Intel)** | `kernel_task` CPU Intercept Loop | Chrome Flag Overrides + PWAs + Automated `renice` Loop + Fan/Turbo Stack | **Fully Documented** |
 | **Windows 10/11** | BD PROCHOT Thermal Clock-Scaling | ThrottleStop + Open-Source Fan Control (Rem0o) | **Cross-Platform Equivalent** |
 
-> **Target Environment:** Built specifically for power users running asset-heavy assets across multiple distinct browser profiles (10 to 40 open tabs) while simultaneously executing local processing pipelines (WebGL engines, node frameworks, cloud rendering tools) and conducting live real-time screen shares (Zoom, Discord, Microsoft Teams).
+> **Target Environment:** Built specifically for power users running asset-heavy workflows across multiple distinct browser profiles (10 to 40 open tabs) while simultaneously executing local processing pipelines (WebGL engines, node frameworks, cloud rendering tools) and conducting live real-time screen shares (Zoom, Discord, Microsoft Teams).
 
 ---
 
@@ -36,13 +36,18 @@ This system blueprint addresses the shared bottlenecks of multi-profile multitas
 
 Running demanding interactive viewports inside a standard browser environment alongside large background memory pools generates immediate thread friction. 
 
-### 1. Progressive Web App (PWA) Sandboxing
+### 1. Hardware Prerequisite
+Before configuring advanced parameters, ensure global acceleration is active:
+* Open Chrome **Settings** -> **System**.
+* Verify that **Use graphics acceleration when available** is toggled **ON**. 
+
+### 2. Progressive Web App (PWA) Sandboxing
 Avoid operating your primary creative canvas or editing workspace inside a standard, extension-heavy browser tab.
 * Navigate to your target application in Google Chrome.
 * Click the **Install** icon on the right-hand side of the URL address bar to run the app in standalone mode.
 * **Why it works:** Launching a PWA isolates the underlying V8 helper engine, shields local memory caches, eliminates overhead from third-party extensions, and gains an independent compositor layer in the OS window hierarchy.
 
-### 2. High-Performance Chromium Overrides
+### 3. High-Performance Chromium Overrides
 Open a new tab, access `chrome://flags`, and apply these engineering configurations:
 
 * **Override software rendering list (`#ignore-gpu-blocklist`):** Set to **Enabled**. Forces the operating system to utilize your dedicated graphics hardware for complex elements typically restricted to slow software emulation.
@@ -50,7 +55,7 @@ Open a new tab, access `chrome://flags`, and apply these engineering configurati
 * **Zero-copy rasterizer (`#enable-zero-copy`):** Set to **Enabled**. Instructs raster worker threads to write textures directly to GPU memory, entirely skipping performance-draining system RAM read/write cycles.
 * **Skia Graphite (`#skia-graphite`):** Set to **Disabled**. Eliminates driver-level rendering path conflicts on Intel-era integrated systems, preventing unexpected browser window freezes and stream blinking.
 
-### 3. Unlocking the V8 JavaScript Heap Limit
+### 4. Unlocking the V8 JavaScript Heap Limit
 When operating multiple user profiles, Chrome will aggressively swap or discard background states. To explicitly expand your memory threshold, open your terminal and launch your performance profile using this custom space flag:
 ```bash
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --js-flags="--max-old-space-size=4096"
