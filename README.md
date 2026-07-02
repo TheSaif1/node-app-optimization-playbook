@@ -19,7 +19,7 @@ A comprehensive systems-engineering handbook to eliminating UI lag, audio buffer
 
 This system blueprint addresses the shared bottlenecks of multi-profile multitasking, resource allocation, and real-time data streaming. It is currently optimized to maintain absolute system stability across ten core disciplines:
 
-* **Creative & Art Directors:** Run deep generative AI node structures (Fuser, Figma Weave, ComfyUI) while tracking active brand kits across multiple client Chrome profiles and live-presenting interactive canvases on Zoom.
+* **Creative & Art Directors:** Run deep generative AI node structures (Fuser, ComfyUI) while tracking active brand kits across multiple client Chrome profiles and live-presenting interactive canvases on Zoom.
 * **Video Editors & Colorists:** Review uncompressed multi-cam project timelines via cloud environments (Frame.io) while managing deep browser asset queues and hosting real-time production reviews.
 * **Music Composers & Sound Designers:** Orchestrate web-based synthesis modules, digital audio workstation (DAW) engines, and high-fidelity spatial audio feeds simultaneously without dropping audio packets or causing microphone clipping.
 * **UX/UI & Product Designers:** Maintain fluid interaction across infinite vector canvases (Figma, Miro), running massive design sprints and cross-profile project trackers under live presentation load.
@@ -47,6 +47,8 @@ Avoid operating your primary creative canvas or editing workspace inside a stand
 * Click the **Install** icon on the right-hand side of the URL address bar to run the app in standalone mode.
 * **Why it works:** Launching a PWA gives the app its own dedicated window and process, separate from your main browsing session, and cuts overhead from third-party extensions running in that window.
 
+![Sandbox isolation comparison across Fuser, Figma, and Weave](v8-sandbox-isolation-fuser-figma-weave-side-by-side.png)
+
 ### 3. High-Performance Chromium Overrides
 Open a new tab, access `chrome://flags`, and apply these engineering configurations:
 
@@ -60,6 +62,32 @@ When operating multiple user profiles, Chrome will aggressively swap or discard 
 ```bash
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --js-flags="--max-old-space-size=4096"
 ```
+
+---
+
+## ⚙️ Phase 2: Automated Thread Priority Adjustment
+
+The included `optimize.sh` script gives Chrome's helper processes a mild scheduling priority boost, so foreground rendering work is less likely to get starved by background tabs.
+
+### Running it
+```bash
+chmod +x optimize.sh
+sudo -v          # authenticate once so the script can use sudo non-interactively
+./optimize.sh
+```
+
+### Reverting it
+If you want to undo the priority change and reset Chrome helper processes back to default (0), run:
+```bash
+./optimize.sh --revert
+```
+
+### Verifying it worked
+Confirm the new priority actually applied by checking the niceness value of Chrome's helper processes:
+```bash
+ps -eo pid,ni,comm | grep "Google Chrome Helper"
+```
+The `NI` column should read `-5` after running the script normally, or `0` after `--revert`.
 
 ---
 
