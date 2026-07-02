@@ -19,7 +19,7 @@ A comprehensive systems-engineering handbook to eliminating UI lag, audio buffer
 
 This system blueprint addresses the shared bottlenecks of multi-profile multitasking, resource allocation, and real-time data streaming. It is currently optimized to maintain absolute system stability across ten core disciplines:
 
-* **Creative & Art Directors:** Run deep generative AI node structures (Fuser, ComfyUI) while tracking active brand kits across multiple client Chrome profiles and live-presenting interactive canvases on Zoom.
+* **Creative & Art Directors:** Run deep generative AI node structures (Fuser, Figma Weave, ComfyUI) while tracking active brand kits across multiple client Chrome profiles and live-presenting interactive canvases on Zoom.
 * **Video Editors & Colorists:** Review uncompressed multi-cam project timelines via cloud environments (Frame.io) while managing deep browser asset queues and hosting real-time production reviews.
 * **Music Composers & Sound Designers:** Orchestrate web-based synthesis modules, digital audio workstation (DAW) engines, and high-fidelity spatial audio feeds simultaneously without dropping audio packets or causing microphone clipping.
 * **UX/UI & Product Designers:** Maintain fluid interaction across infinite vector canvases (Figma, Miro), running massive design sprints and cross-profile project trackers under live presentation load.
@@ -34,18 +34,18 @@ This system blueprint addresses the shared bottlenecks of multi-profile multitas
 
 ## 📦 Phase 1: Browser Isolation & V8 Memory Expansion
 
-Running demanding interactive viewports inside a standard browser environment alongside large background memory pools generates immediate thread friction. 
+Running demanding interactive viewports inside a standard browser environment alongside large background memory pools generates immediate thread friction.
 
 ### 1. Hardware Prerequisite
 Before configuring advanced parameters, ensure global acceleration is active:
 * Open Chrome **Settings** -> **System**.
-* Verify that **Use graphics acceleration when available** is toggled **ON**. 
+* Verify that **Use graphics acceleration when available** is toggled **ON**.
 
 ### 2. Progressive Web App (PWA) Sandboxing
 Avoid operating your primary creative canvas or editing workspace inside a standard, extension-heavy browser tab.
 * Navigate to your target application in Google Chrome.
 * Click the **Install** icon on the right-hand side of the URL address bar to run the app in standalone mode.
-* **Why it works:** Launching a PWA isolates the underlying V8 helper engine, shields local memory caches, eliminates overhead from third-party extensions, and gains an independent compositor layer in the OS window hierarchy.
+* **Why it works:** Launching a PWA gives the app its own dedicated window and process, separate from your main browsing session, and cuts overhead from third-party extensions running in that window.
 
 ### 3. High-Performance Chromium Overrides
 Open a new tab, access `chrome://flags`, and apply these engineering configurations:
@@ -59,3 +59,10 @@ Open a new tab, access `chrome://flags`, and apply these engineering configurati
 When operating multiple user profiles, Chrome will aggressively swap or discard background states. To explicitly expand your memory threshold, open your terminal and launch your performance profile using this custom space flag:
 ```bash
 /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --js-flags="--max-old-space-size=4096"
+```
+
+---
+
+## 📊 Stress Test Results
+
+![System Metrics Stress Test](system-metrics.png)
